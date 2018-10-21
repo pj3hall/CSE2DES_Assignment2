@@ -1,4 +1,4 @@
-public class DeliveryItem {
+public class DeliveryItem implements SimpleKey {
 
     private Order order;
     private Integer quantity;
@@ -12,12 +12,15 @@ public class DeliveryItem {
 
     public String toString() {
         String desc = "DeliveryItem["
-                + "order: " + order
+                + "order: " + order.getOrderID()
+                + "product: " + order.getProduct()
                 + ", quantity: " + quantity
                 + ", difference: " + difference + "]";
 
         return desc;
     }
+
+    public String getKey() {return order.getOrderID();}
 
     public Order getOrder() {return order;}
     public Integer getQuantity() {return quantity;}

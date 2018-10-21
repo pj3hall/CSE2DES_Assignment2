@@ -1,18 +1,20 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Invoice {
+public class Invoice implements SimpleKey {
+
+    public enum INVOICESTATUS{issued, paid}
 
     private String id;
     private Integer fromDate;
     private Integer toDate;
     private Customer customer;
     private List<Delivery> deliveries;
-    private Double totalCost; //TODO should be REAL
+    private Double totalCost;
     private Integer payDate;
-    private String status; //TODO status should be issued or paid
+    private INVOICESTATUS status;
 
-    public Invoice(String id, Integer fromDate, Integer toDate, Customer customer, Double totalCost, Integer payDate, String status) {
+    public Invoice(String id, Integer fromDate, Integer toDate, Customer customer, Double totalCost, Integer payDate, INVOICESTATUS status) {
         this.id = id;
         this.fromDate = fromDate;
         this.toDate = toDate;
@@ -45,6 +47,8 @@ public class Invoice {
         return desc;
     }
 
+    public String getKey() {return id;}
+
     public String getInvoiceID() {return id;}
     public Integer getFromDate() {return fromDate;}
     public Integer getToDate() {return toDate;}
@@ -52,7 +56,7 @@ public class Invoice {
     public List<Delivery> getDeliveries() {return deliveries;}
     public Double getTotalCost() {return totalCost;}
     public Integer getPayDate() {return payDate;}
-    public String getStatus() {return status;}
+    public INVOICESTATUS getStatus() {return status;}
 
     public void addDelivery(Delivery delivery) throws Exception {
         deliveries.add(delivery);

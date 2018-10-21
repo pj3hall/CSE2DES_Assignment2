@@ -1,15 +1,17 @@
 import java.util.ArrayList;
 import java.util.List;
 
-public class Delivery {
+public class Delivery implements SimpleKey {
 
     private String id;
     private Customer customer;
     private Address address;
     private Integer date;
     private Integer dayOfWeek;
+    private DeliveryItem deliveryItem; //TODO not sure
     private List<DeliveryItem> deliveryItems;
 
+    //TODO calculate dayOfWeek
     public Delivery(String id, Customer customer, Address address, Integer date, Integer dayOfWeek) {
         this.id = id;
         this.customer = customer;
@@ -30,13 +32,17 @@ public class Delivery {
 
         String desc = "Delivery["
                 + "deliveryID: " + id
-                + ", customer: " + customer
-                + ", address: " + address
+                + ", customer: " + customer.getCustomerID()
+                + ", address: " + address.getAddressID()
                 + ", date: " + date
                 + ", dayOfWeek: " + dayOfWeek
-                + ", deliveryItems: " + deliveryItems + "]";
+                + ", deliveryItems: " + orders + "]";
 
         return desc;
+    }
+
+    public String getKey() {
+        return id;
     }
 
     public String getDeliveryID() {return id;}
